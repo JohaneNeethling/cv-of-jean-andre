@@ -1,0 +1,36 @@
+.hisIcon {
+  border: none !important;
+  align-items: center;
+  margin-top: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hisIcon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hisTitle {
+  color: rgb(109, 2, 2);
+  font-weight: 800 !important;
+  font-size: 25px;
+}
+
+.hisImg {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.monumentTag {
+  color: rgb(107, 5, 5);
+}

@@ -1,0 +1,87 @@
+.experImg {
+  width: 30rem !important;
+  height: 10rem !important;
+}
+
+.experCard {
+  align-items: center !important;
+  border: solid;
+  border-color: rgb(131, 5, 5) !important;
+  border-width: 4px !important;
+  width: 30rem !important;
+}
+
+.list-group-flush {
+  font-weight: 600 !important;
+  color: grey !important;
+}
+
+.posiTag {
+  background-color: rgb(142, 2, 2) !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+.titleCard a {
+  font-size: 25px !important;
+  font-weight: 800 !important;
+  color: rgb(94, 3, 3) !important;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.card-container > .card {
+  margin-bottom: 20px;
+  text-align: center;
+  width: 18rem;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-container > .card:nth-last-child(-n + 2) {
+  width: 35rem;
+}
+
+.card-container > .card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-container > .card img {
+  transition: transform 0.3s ease;
+}
+
+.card-container > .card:hover img {
+  transform: scale(1.1);
+}
+
+.card-container > .card .card-body {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-container > .card:hover .card-body {
+  opacity: 0.9;
+}
+
+.card-container > .card .list-group-item {
+  transition: background-color 0.3s ease;
+}
+
+.card-container > .card .list-group-item:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

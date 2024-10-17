@@ -1,0 +1,47 @@
+.myh4 {
+  font-weight: 800 !important;
+  font-size: 30px !important;
+}
+
+.skillsTag {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #770404;
+  text-align: left;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+.skillsPara {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #730303;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+  animation-delay: 0.5s;
+  text-align: left;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.skillsHeader {
+  display: flex;
+  align-items: center;
+}
+
+.skillsImage {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.skillsContainer {
+  margin-top: 80px;
+}
