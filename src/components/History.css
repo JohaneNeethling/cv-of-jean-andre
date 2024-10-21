@@ -27,10 +27,20 @@
 }
 
 .hisImg {
-  width: 100px !important;
-  height: 100px !important;
+  width: 200px !important;
+  height: auto;
 }
 
 .monumentTag {
   color: rgb(107, 5, 5);
+}
+
+@media (max-width: 576px) {
+  .hisTitle {
+    font-size: 1.5rem;
+  }
+  .hisImg {
+    width: 80px;
+    height: auto;
+  }
 }

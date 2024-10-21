@@ -1,24 +1,26 @@
+// Import necessary components from React Bootstrap and CSS
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import "./WorkExperience.css";
-import Maxicool from "./Photos/MaxiCool.jpeg";
+import "./WorkExperience.css"; // Import custom styles for the component
+import Maxicool from "./Photos/MaxiCool.jpeg"; // Import images for experience entries
 import ERSBio from "./Photos/ErsBio.jpeg";
 import ERSRoof from "./Photos/ErsRoof1.jpeg";
 import CADCO from "./Photos/CadCo1.png";
 import BuildIt from "./Photos/BuildIt1.png";
 
+// Define an array of work experiences, each represented as an object
 const experiences = [
   {
-    img: Maxicool,
-    title: "Maxicool, Stikland",
-    role: "Technician",
-    duration: "Aug 2017 - Jan 2018",
+    img: Maxicool, // Image for the experience
+    title: "Maxicool, Stikland", // Title of the position
+    role: "Technician", // Job role
+    duration: "Aug 2017 - Jan 2018", // Duration of employment
     description:
       "I specialized in installing refrigeration units on refrigerated trucks, ensuring optimal temperature control and reliability. I also repaired and maintained faulty units, quickly diagnosing and resolving issues to minimize downtime.",
-    contact: "Philip @ 083 452 6202",
-    contactLink: "tel:+27834526202",
-    link: "https://www.maxicool.co.za/",
-    note: "Contract Ended",
+    contact: "Philip @ 083 452 6202", // Contact person
+    contactLink: "tel:+27834526202", // Telephone link
+    link: "https://www.maxicool.co.za/", // Company website
+    note: "Contract Ended", // Additional note about the position
   },
   {
     img: ERSBio,
@@ -70,40 +72,59 @@ const experiences = [
   },
 ];
 
+// Define the Experiences functional component
 function Experiences() {
   return (
     <div className="card-container">
-      {experiences.map((exp, index) => (
-        <Card key={index} style={{ width: "19rem" }} className="experCard">
-          <Card.Img
-            variant="top"
-            src={exp.img}
-            className="experImg"
-            alt={`${exp.title} - ${exp.role}`}
-          />
-          <Card.Body>
-            <Card.Title className="titleCard">
-              <a href={exp.link} target="_blank" rel="noreferrer">
-                {exp.title}
-              </a>
-            </Card.Title>
-            <ListGroup>
-              <ListGroup.Item className="posiTag">
-                {exp.role} <br /> {exp.duration}
+      {" "}
+      {/* Container for the card elements */}
+      {experiences.map(
+        (
+          exp,
+          index // Map through the experiences array
+        ) => (
+          <Card key={index} style={{ width: "19rem" }} className="experCard">
+            {" "}
+            {/* Create a card for each experience */}
+            <Card.Img
+              variant="top" // Top variant for image display
+              src={exp.img} // Source image
+              className="experImg" // Image CSS class
+              alt={`${exp.title} - ${exp.role}`} // Alt text for accessibility
+            />
+            <Card.Body>
+              <Card.Title className="titleCard">
+                <a href={exp.link} target="_blank" rel="noreferrer">
+                  {" "}
+                  {/* Link to company website */}
+                  {exp.title} {/* Experience title */}
+                </a>
+              </Card.Title>
+              <ListGroup>
+                <ListGroup.Item className="posiTag">
+                  {exp.role} <br /> {exp.duration}{" "}
+                  {/* Display role and duration */}
+                </ListGroup.Item>
+              </ListGroup>
+              <Card.Text>{exp.description}</Card.Text>{" "}
+              {/* Experience description */}
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              {" "}
+              {/* Additional list group for contact info */}
+              <ListGroup.Item>
+                Contact <a href={exp.contactLink}>{exp.contact}</a>{" "}
+                {/* Contact link */}
               </ListGroup.Item>
+              <ListGroup.Item>{exp.note}</ListGroup.Item>{" "}
+              {/* Additional notes */}
             </ListGroup>
-            <Card.Text>{exp.description}</Card.Text>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroup.Item>
-              Contact <a href={exp.contactLink}>{exp.contact}</a>
-            </ListGroup.Item>
-            <ListGroup.Item>{exp.note}</ListGroup.Item>
-          </ListGroup>
-        </Card>
-      ))}
+          </Card>
+        )
+      )}
     </div>
   );
 }
 
+// Export the Experiences component for use in other parts of the application
 export default Experiences;

@@ -1,6 +1,6 @@
 .experImg {
-  width: 30rem !important;
-  height: 10rem !important;
+  width: 400px !important;
+  height: 400px !important;
 }
 
 .experCard {
@@ -8,7 +8,8 @@
   border: solid;
   border-color: rgb(131, 5, 5) !important;
   border-width: 4px !important;
-  width: 30rem !important;
+  max-width: 30rem;
+  width: 25rem !important;
 }
 
 .list-group-flush {
@@ -23,7 +24,7 @@
 }
 
 .titleCard a {
-  font-size: 25px !important;
+  font-size: 1.5em !important;
   font-weight: 800 !important;
   color: rgb(94, 3, 3) !important;
 }
@@ -39,14 +40,10 @@
 .card-container > .card {
   margin-bottom: 20px;
   text-align: center;
-  width: 18rem;
+  width: 100%;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-container > .card:nth-last-child(-n + 2) {
-  width: 35rem;
 }
 
 .card-container > .card:hover {
@@ -81,7 +78,12 @@
 }
 
 @media (max-width: 768px) {
+  .card-container > .card {
+    max-width: 100%;
+  }
+
   .card-container {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: column;
+    gap: 10px;
   }
 }

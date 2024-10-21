@@ -45,3 +45,25 @@
 .skillsContainer {
   margin-top: 80px;
 }
+
+@media (max-width: 768px) {
+  .skillsTag {
+    font-size: 2.5rem;
+  }
+
+  .skillsPara {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .skillsImage {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .skillsHeader {
+    flex-direction: column;
+    align-items: center;
+  }
+}

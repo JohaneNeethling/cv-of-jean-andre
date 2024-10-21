@@ -13,7 +13,14 @@ function Footer() {
         <p>
           {" "}
           {/* Paragraph for copyright and attribution */}© 2024 Jean-Andre du
-          Plessis. All rights reserved. | Coded by Neethling Development
+          Plessis. All rights reserved. | Coded by{" "}
+          <a
+            href="https://online-architect.onrender.com/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            The Online Architect
+          </a>
         </p>
       </div>
     </footer>

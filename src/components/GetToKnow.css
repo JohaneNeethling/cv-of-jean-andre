@@ -27,4 +27,18 @@
 
 .getKnowContainer {
   margin-top: 80px;
+  padding: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .getKnowTag {
+    font-size: 2rem;
+  }
+
+  .getKnowPara {
+    font-size: 1rem;
+  }
 }
