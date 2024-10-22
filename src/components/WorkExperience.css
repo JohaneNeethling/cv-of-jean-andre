@@ -1,12 +1,13 @@
 .experImg {
-  width: 25rem !important;
-  height: 15rem !important;
+  width: 100%;
+  height: auto;
 }
 
 .experCard {
   align-items: center;
   border: 4px solid rgb(255, 255, 255) !important;
-  width: 30rem;
+  width: auto;
+  max-width: 30rem;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -41,15 +42,15 @@
   gap: 20px;
   justify-content: center;
   background-color: darkred;
-  padding: 7rem;
+  padding: 2rem;
 }
 
 .card-container > .card {
   text-align: center;
-  width: 100%;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 300px;
 }
 
 .card-container > .card:hover {
@@ -83,15 +84,18 @@
   cursor: pointer;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
   .experCard {
-    max-width: 130%;
+    max-width: 100%;
   }
 
   .card-container {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+    padding: 1rem;
+  }
+
+  .card-container > .card {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
   }
 
   .titleCard a {
@@ -104,5 +108,17 @@
 
   .posiTag {
     font-size: 0.9em;
+  }
+}
+
+@media (max-width: 1000px) {
+  .experCard {
+    max-width: 100%;
+  }
+
+  .card-container {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
   }
 }

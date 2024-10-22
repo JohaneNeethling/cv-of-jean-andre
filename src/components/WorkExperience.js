@@ -75,79 +75,72 @@ const experiences = [
 
 // Define the Experiences functional component
 function Experiences() {
-  const cardRefs = useRef([]); // Creating a ref array to store card references
+  const cardRefs = useRef([]);
   const [visibleCards, setVisibleCards] = useState(
-    Array(experiences.length).fill(false) // Initializing state to track visibility of cards
+    Array(experiences.length).fill(false)
   );
 
   useEffect(() => {
     const handleScroll = () => {
       cardRefs.current.forEach((cardRef, index) => {
         if (cardRef) {
-          const { top } = cardRef.getBoundingClientRect(); // Getting the position of the card
+          const { top } = cardRef.getBoundingClientRect();
           if (top < window.innerHeight && top > 0 && !visibleCards[index]) {
-            // Check if card is in viewport and not already visible
             gsap.fromTo(
               cardRef,
-              { opacity: 0, y: 50 }, // Initial state for animation
-              { opacity: 1, y: 0, duration: 0.5 } // End state for animation
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 0.5 }
             );
             setVisibleCards((prev) => {
-              const newVisible = [...prev]; // Create a copy of the previous visibility state
-              newVisible[index] = true; // Mark the current card as visible
-              return newVisible; // Return the updated state
+              const newVisible = [...prev];
+              newVisible[index] = true;
+              return newVisible;
             });
           }
         }
       });
     };
 
-    window.addEventListener("scroll", handleScroll); // Adding scroll event listener
-    handleScroll(); // Initial check for card visibility
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll); // Cleanup: remove event listener on unmount
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [visibleCards]); // Add visibleCards to dependencies to avoid stale closure issues
+  }, [visibleCards]);
 
   return (
     <div className="card-container">
-      {" "}
-      {/* Main container for cards */}
       {experiences.map((exp, index) => (
         <Card
-          key={index} // Using index as key (could be improved with a unique identifier)
-          style={{ width: "25rem" }} // Styling the card width
-          ref={(el) => (cardRefs.current[index] = el)} // Assigning ref to each card
+          key={index}
+          style={{ maxWidth: "100%" }}
+          ref={(el) => (cardRefs.current[index] = el)}
         >
           <Card.Img
             variant="top"
-            src={exp.img} // Setting image for the card
+            src={exp.img}
             className="experImg"
-            alt={`${exp.title} - ${exp.role}`} // Alt text for the image
+            alt={`${exp.title} - ${exp.role}`}
           />
           <Card.Body>
             <Card.Title className="titleCard">
               <a href={exp.link} target="_blank" rel="noreferrer">
-                {exp.title} {/* Title of the experience with link */}
+                {exp.title}
               </a>
             </Card.Title>
             <ListGroup>
               <ListGroup.Item className="posiTag">
-                {exp.role} <br /> {exp.duration}{" "}
-                {/* Displaying role and duration */}
+                {exp.role} <br /> {exp.duration}
               </ListGroup.Item>
             </ListGroup>
-            <Card.Text>{exp.description}</Card.Text>{" "}
-            {/* Description of the experience */}
+            <Card.Text>{exp.description}</Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroup.Item>
-              Contact <a href={exp.contactLink}>{exp.contact}</a>{" "}
-              {/* Contact information */}
+              Contact <a href={exp.contactLink}>{exp.contact}</a>
             </ListGroup.Item>
-            <ListGroup.Item>{exp.note}</ListGroup.Item>{" "}
-            {/* Additional note about the position */}
+            <ListGroup.Item>{exp.note}</ListGroup.Item>
           </ListGroup>
         </Card>
       ))}
@@ -155,4 +148,4 @@ function Experiences() {
   );
 }
 
-export default Experiences; // Exporting the Experiences component for use in other files
+export default Experiences;
