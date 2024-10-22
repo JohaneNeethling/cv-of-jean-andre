@@ -1,12 +1,13 @@
-// Import necessary components from React Bootstrap and CSS
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import "./WorkExperience.css"; // Import custom styles for the component
-import Maxicool from "./Photos/MaxiCool.jpeg"; // Import images for experience entries
+import React, { useEffect, useRef, useState } from "react"; // Importing React and necessary hooks
+import Card from "react-bootstrap/Card"; // Importing Card component from React Bootstrap
+import ListGroup from "react-bootstrap/ListGroup"; // Importing ListGroup component from React Bootstrap
+import "./WorkExperience.css"; // Importing CSS styles for the WorkExperience component
+import Maxicool from "./Photos/MaxiCool.jpeg"; // Importing images for the experiences
 import ERSBio from "./Photos/ErsBio.jpeg";
 import ERSRoof from "./Photos/ErsRoof1.jpeg";
 import CADCO from "./Photos/CadCo1.png";
 import BuildIt from "./Photos/BuildIt1.png";
+import { gsap } from "gsap"; // Importing GSAP for animations
 
 // Define an array of work experiences, each represented as an object
 const experiences = [
@@ -74,57 +75,84 @@ const experiences = [
 
 // Define the Experiences functional component
 function Experiences() {
+  const cardRefs = useRef([]); // Creating a ref array to store card references
+  const [visibleCards, setVisibleCards] = useState(
+    Array(experiences.length).fill(false) // Initializing state to track visibility of cards
+  );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      cardRefs.current.forEach((cardRef, index) => {
+        if (cardRef) {
+          const { top } = cardRef.getBoundingClientRect(); // Getting the position of the card
+          if (top < window.innerHeight && top > 0 && !visibleCards[index]) {
+            // Check if card is in viewport and not already visible
+            gsap.fromTo(
+              cardRef,
+              { opacity: 0, y: 50 }, // Initial state for animation
+              { opacity: 1, y: 0, duration: 0.5 } // End state for animation
+            );
+            setVisibleCards((prev) => {
+              const newVisible = [...prev]; // Create a copy of the previous visibility state
+              newVisible[index] = true; // Mark the current card as visible
+              return newVisible; // Return the updated state
+            });
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll); // Adding scroll event listener
+    handleScroll(); // Initial check for card visibility
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll); // Cleanup: remove event listener on unmount
+    };
+  }, [visibleCards]); // Add visibleCards to dependencies to avoid stale closure issues
+
   return (
     <div className="card-container">
       {" "}
-      {/* Container for the card elements */}
-      {experiences.map(
-        (
-          exp,
-          index // Map through the experiences array
-        ) => (
-          <Card key={index} style={{ width: "19rem" }} className="experCard">
-            {" "}
-            {/* Create a card for each experience */}
-            <Card.Img
-              variant="top" // Top variant for image display
-              src={exp.img} // Source image
-              className="experImg" // Image CSS class
-              alt={`${exp.title} - ${exp.role}`} // Alt text for accessibility
-            />
-            <Card.Body>
-              <Card.Title className="titleCard">
-                <a href={exp.link} target="_blank" rel="noreferrer">
-                  {" "}
-                  {/* Link to company website */}
-                  {exp.title} {/* Experience title */}
-                </a>
-              </Card.Title>
-              <ListGroup>
-                <ListGroup.Item className="posiTag">
-                  {exp.role} <br /> {exp.duration}{" "}
-                  {/* Display role and duration */}
-                </ListGroup.Item>
-              </ListGroup>
-              <Card.Text>{exp.description}</Card.Text>{" "}
-              {/* Experience description */}
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              {" "}
-              {/* Additional list group for contact info */}
-              <ListGroup.Item>
-                Contact <a href={exp.contactLink}>{exp.contact}</a>{" "}
-                {/* Contact link */}
+      {/* Main container for cards */}
+      {experiences.map((exp, index) => (
+        <Card
+          key={index} // Using index as key (could be improved with a unique identifier)
+          style={{ width: "25rem" }} // Styling the card width
+          ref={(el) => (cardRefs.current[index] = el)} // Assigning ref to each card
+        >
+          <Card.Img
+            variant="top"
+            src={exp.img} // Setting image for the card
+            className="experImg"
+            alt={`${exp.title} - ${exp.role}`} // Alt text for the image
+          />
+          <Card.Body>
+            <Card.Title className="titleCard">
+              <a href={exp.link} target="_blank" rel="noreferrer">
+                {exp.title} {/* Title of the experience with link */}
+              </a>
+            </Card.Title>
+            <ListGroup>
+              <ListGroup.Item className="posiTag">
+                {exp.role} <br /> {exp.duration}{" "}
+                {/* Displaying role and duration */}
               </ListGroup.Item>
-              <ListGroup.Item>{exp.note}</ListGroup.Item>{" "}
-              {/* Additional notes */}
             </ListGroup>
-          </Card>
-        )
-      )}
+            <Card.Text>{exp.description}</Card.Text>{" "}
+            {/* Description of the experience */}
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroup.Item>
+              Contact <a href={exp.contactLink}>{exp.contact}</a>{" "}
+              {/* Contact information */}
+            </ListGroup.Item>
+            <ListGroup.Item>{exp.note}</ListGroup.Item>{" "}
+            {/* Additional note about the position */}
+          </ListGroup>
+        </Card>
+      ))}
     </div>
   );
 }
 
-// Export the Experiences component for use in other parts of the application
-export default Experiences;
+export default Experiences; // Exporting the Experiences component for use in other files

@@ -5,6 +5,11 @@
   text-align: right;
   opacity: 0;
   animation: fadeIn 1s forwards;
+  transition: color 0.3s ease;
+}
+
+.qualiTag:hover {
+  color: #ff4d4d;
 }
 
 .qualiPara {
@@ -16,6 +21,11 @@
   animation-delay: 0.5s;
   text-align: right;
   font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.qualiPara:hover {
+  transform: scale(1.02);
 }
 
 @keyframes fadeIn {
@@ -26,6 +36,7 @@
 
 .qualificationsContainer {
   margin-top: 80px;
+  padding: 0 20px;
 }
 
 .credButton {
@@ -74,12 +85,19 @@
 }
 
 @media (max-width: 768px) {
+  .qualificationsContainer {
+    margin-top: 40px;
+    padding: 0 10px;
+  }
+
   .qualiTag {
     font-size: 2.5rem;
+    text-align: center;
   }
 
   .qualiPara {
     font-size: 1rem;
+    text-align: center;
   }
 
   .credButton {
@@ -87,5 +105,20 @@
     padding: 10px;
     width: 100%;
     margin-right: 0;
+    margin-top: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .qualiTag {
+    font-size: 2rem;
+  }
+
+  .qualiPara {
+    font-size: 0.9rem;
+  }
+
+  .credButton {
+    font-size: 18px;
   }
 }

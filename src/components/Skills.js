@@ -1,41 +1,61 @@
 // Importing Stack component from react-bootstrap for layout
-import Stack from "react-bootstrap/Stack"; // Stack allows for vertical spacing between elements
-import "./Skills.css"; // Importing custom CSS for styling the Skills component
-import Problem from "./Photos/problem.png"; // Importing image for problem-solving skill
-import Honesty from "./Photos/honesty.png"; // Importing image for honesty skill
-import Communication from "./Photos/communications.png"; // Importing image for communication skill
-import Time from "./Photos/time.png"; // Importing image for time management skill
+import Stack from "react-bootstrap/Stack";
+import "./Skills.css"; // Import CSS for styling
+import Problem from "./Photos/problem.png"; // Import Problem-Solving image
+import Honesty from "./Photos/honesty.png"; // Import Honesty image
+import Communication from "./Photos/communications.png"; // Import Communication image
+import Time from "./Photos/time.png"; // Import Time Management image
+import { useEffect } from "react"; // Import useEffect hook from React
 
 // Defining the Skills functional component
 function Skills() {
+  useEffect(() => {
+    const elements = document.querySelectorAll(".skillsTag, .skillsPara"); // Select both the skillsTag and skillsPara
+    const onScroll = () => {
+      // Scroll event handler
+      const windowHeight = window.innerHeight; // Get the viewport height
+
+      elements.forEach((element) => {
+        // Iterate through each selected element
+        const elementTop = element.getBoundingClientRect().top; // Get the position of the element
+
+        if (elementTop < windowHeight - 50) {
+          // Trigger when element is near the viewport
+          element.classList.add("visible"); // Add the visible class to trigger animations
+        }
+      });
+    };
+
+    window.addEventListener("scroll", onScroll); // Add scroll event listener
+    onScroll(); // Check on initial render
+
+    return () => window.removeEventListener("scroll", onScroll); // Cleanup listener on component unmount
+  }, []); // Empty dependency array to run effect only on mount
+
   return (
     <div className="skillsContainer">
       {" "}
-      {/* Main container for skills section */}
+      {/* Main container for skills */}
       <Stack gap={3}>
         {" "}
-        {/* Stack component to provide vertical spacing between child elements */}
+        {/* Stack layout for spacing */}
         <div className="skillsTag">I'm also skilled at...</div>{" "}
-        {/* Tagline for the skills section */}
+        {/* Skills introduction */}
         {/* Problem-Solving Skill */}
         <div className="skillsPara">
-          {" "}
-          {/* Container for problem-solving skill details */}
           <div className="skillsHeader">
             {" "}
-            {/* Header containing image and title */}
+            {/* Header for Problem-Solving skill */}
             <img
               src={Problem}
               alt="Problem Solving"
               className="skillsImage"
             />{" "}
-            {/* Image with alt text */}
+            {/* Problem image */}
             <h4 className="myh4">Problem-Solving</h4>{" "}
-            {/* Title for the skill */}
+            {/* Problem-Solving title */}
           </div>
           <p>
-            {" "}
-            {/* Description of problem-solving skill */}
             Skilled in identifying and resolving complex issues with innovative
             solutions. I use analytical thinking and creativity to troubleshoot
             challenges, optimize processes, and drive continuous improvement.
@@ -45,18 +65,14 @@ function Skills() {
         </div>
         {/* Honesty Skill */}
         <div className="skillsPara">
-          {" "}
-          {/* Container for honesty skill details */}
           <div className="skillsHeader">
             {" "}
-            {/* Header containing image and title */}
+            {/* Header for Honesty skill */}
             <img src={Honesty} alt="Honesty" className="skillsImage" />{" "}
-            {/* Image with alt text */}
-            <h4 className="myh4">Honesty</h4> {/* Title for the skill */}
+            {/* Honesty image */}
+            <h4 className="myh4">Honesty</h4> {/* Honesty title */}
           </div>
           <p>
-            {" "}
-            {/* Description of honesty skill */}
             Committed to maintaining transparency and integrity in all
             professional interactions. I value trust and consistently provide
             honest feedback, uphold ethical standards, and act with sincerity in
@@ -65,21 +81,18 @@ function Skills() {
         </div>
         {/* Communication Skill */}
         <div className="skillsPara">
-          {" "}
-          {/* Container for communication skill details */}
           <div className="skillsHeader">
             {" "}
-            {/* Header containing image and title */}
+            {/* Header for Communication skill */}
             <img
               src={Communication}
               alt="Communication"
-              className="skillsImage" // Image with alt text
-            />
-            <h4 className="myh4">Communication</h4> {/* Title for the skill */}
+              className="skillsImage"
+            />{" "}
+            {/* Communication image */}
+            <h4 className="myh4">Communication</h4> {/* Communication title */}
           </div>
           <p>
-            {" "}
-            {/* Description of communication skill */}
             Clear and effective communicator, skilled in conveying information
             and ideas to diverse audiences. I excel in both written and verbal
             communication, fostering strong relationships and ensuring mutual
@@ -89,23 +102,19 @@ function Skills() {
         </div>
         {/* Time Management Skill */}
         <div className="skillsPara">
-          {" "}
-          {/* Container for time management skill details */}
           <div className="skillsHeader">
             {" "}
-            {/* Header containing image and title */}
+            {/* Header for Time Management skill */}
             <img
               src={Time}
               alt="Time Management"
               className="skillsImage"
             />{" "}
-            {/* Image with alt text */}
+            {/* Time Management image */}
             <h4 className="myh4">Time Management</h4>{" "}
-            {/* Title for the skill */}
+            {/* Time Management title */}
           </div>
           <p>
-            {" "}
-            {/* Description of time management skill */}
             Proficient in organizing and prioritizing tasks to meet deadlines
             and achieve goals efficiently. I balance multiple responsibilities
             effectively, adapt to shifting priorities, and maintain productivity

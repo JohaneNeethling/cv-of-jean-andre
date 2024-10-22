@@ -19,7 +19,7 @@ function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            The Online Architect
+            Your Digital Architect
           </a>
         </p>
       </div>

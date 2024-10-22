@@ -6,23 +6,31 @@
 .skillsTag {
   font-size: 3rem;
   font-weight: bold;
-  color: #770404;
+  color: #ffffff;
   text-align: left;
   opacity: 0;
-  animation: fadeIn 1s forwards;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.skillsTag.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .skillsPara {
   font-size: 1.2rem;
   line-height: 1.5;
-  color: #730303;
+  color: #ffffff;
   opacity: 0;
-  animation: fadeIn 1.5s forwards;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   animation-delay: 0.5s;
-  text-align: left;
-  font-weight: 600;
-  margin-top: 20px;
-  padding: 10px;
+}
+
+.skillsPara.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .skillsHeader {
@@ -36,14 +44,10 @@
   margin-right: 15px;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
 .skillsContainer {
   margin-top: 80px;
+  background-color: darkred;
+  padding: 3rem;
 }
 
 @media (max-width: 768px) {

@@ -1,46 +1,39 @@
 .hisIcon {
+  transition: transform 0.3s ease;
   border: none !important;
-  align-items: center;
-  margin-top: 40px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s forwards;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  margin-top: 3rem !important;
 }
 
 .hisIcon:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.hisTitle {
-  color: rgb(109, 2, 2);
-  font-weight: 800 !important;
-  font-size: 25px;
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.hisImg {
-  width: 200px !important;
-  height: auto;
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.monumentTag {
-  color: rgb(107, 5, 5);
-}
-
-@media (max-width: 576px) {
-  .hisTitle {
-    font-size: 1.5rem;
+@media (max-width: 768px) {
+  .hisIcon {
+    margin: 10px 0;
   }
+
   .hisImg {
-    width: 80px;
+    max-width: 80%;
     height: auto;
+  }
+
+  .hisTitle {
+    font-size: 1.25rem;
+  }
+
+  .hisText {
+    font-size: 0.9rem;
   }
 }
